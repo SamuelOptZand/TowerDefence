@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-using UnityEngine.UIElements;
 public class EnemyAI : MonoBehaviour
 {
     private Transform[] currentTrans;
@@ -10,7 +9,7 @@ public class EnemyAI : MonoBehaviour
     private SpriteRenderer Sr;
     public static event Action<GameObject> ReachEnd;
     public static event Action<GameObject> KillEnem;
-    private float MoveSpeed = 2f;
+    [SerializeField] private float MoveSpeed = 2f;
     private float MaxHealth = 100f;
     private int i = 1;
     private float Health = 100f;

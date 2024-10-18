@@ -8,6 +8,7 @@ public class TowerButton1 : MonoBehaviour
     void Start()
     {
         Dragable.DoneDragging += GiveBackMenuButton;
+        Openbutton.SetActive(true);
     }
     public void spawntower()
     {
@@ -20,7 +21,7 @@ public class TowerButton1 : MonoBehaviour
         }
     }
     private void GiveBackMenuButton(GameObject gameObject)
-    { 
-        Openbutton.SetActive(true); 
+    {
+        Openbutton.SetActive(true);
     }
 }

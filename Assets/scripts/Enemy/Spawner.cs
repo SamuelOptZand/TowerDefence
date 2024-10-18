@@ -9,6 +9,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private List<GameObject> Enemylist = new List<GameObject>();
     public static event Action<GameObject> IncreaseRound;
     private float level;
+    private int i;
     public float Rounds { get { return level; }}
     void Start()
     {
@@ -21,8 +22,9 @@ public class Spawner : MonoBehaviour
     {
         if (Enemylist.Count == 0)
         {
+            i = 0;
             level++;
-            if (level % 2 == 0)
+            if (level % 5 == 0)
             {
                 IncreaseRound.Invoke(gameObject);
             }
@@ -31,8 +33,9 @@ public class Spawner : MonoBehaviour
     }
     private IEnumerator Spawning()
     {
-        while (Enemylist.Count < level) 
+        while (i <= level)
         {
+            i++;
             GameObject NewEnemy = Instantiate(EnemyPre, StartPos.position, Quaternion.identity);
             Enemylist.Add(NewEnemy);
 

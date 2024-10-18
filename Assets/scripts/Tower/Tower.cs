@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class Tower : MonoBehaviour
@@ -6,8 +7,10 @@ public class Tower : MonoBehaviour
     private EnemyAI targetscript;
     private List<GameObject> InRange = new List<GameObject>();
     private LineRenderer lineRenderer;
-    private float AtkPwr = 1f;
+    private float AtkPwr = 5f;
     private bool enablerange = false;
+    private bool EnemiesToAttack = false;
+    private bool IntervalLimiter = false;
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -16,18 +19,25 @@ public class Tower : MonoBehaviour
         lineRenderer.startWidth = 0.1f;
         Dragable.DoneDragging += Donedrag;
         UpgradeButton.UpgradeT += upgrade;
-
     }
     void Update()
     {
         if (InRange.Count > 0)
         {
             target = InRange[0].transform;
+            if(EnemiesToAttack == true)
+            {
+                Attack();
+                if(IntervalLimiter == false)
+                {   
+                    StartCoroutine(AttackInterval());
+                    IntervalLimiter = true;
+                }
+            }
         }
     }
     private void OnTriggerEnter2D(Collider2D enemy) 
     {
-        
         if (enablerange == true)
         {
             if (enemy.CompareTag("enemy"))
@@ -35,21 +45,9 @@ public class Tower : MonoBehaviour
                 if (!InRange.Contains(enemy.gameObject))
                 { 
                     InRange.Add(enemy.gameObject);
-                    targetscript = InRange[0].GetComponent<EnemyAI>();  
+                    targetscript = InRange[0].GetComponent<EnemyAI>();
+                    EnemiesToAttack = true;
                 }
-            }
-        }
-    }
-    private void OnTriggerStay2D(Collider2D enemy)
-    {
-        if(enablerange == true)
-        {
-            if (enemy.CompareTag("enemy"))
-            {
-                lineRenderer.SetPosition(0, transform.position);
-                lineRenderer.SetPosition(1, target.position);
-                lineRenderer.enabled = true;
-                targetscript.hp -= AtkPwr;
             }
         }
     }
@@ -61,6 +59,8 @@ public class Tower : MonoBehaviour
             if (InRange.Count == 0)
             {
                 lineRenderer.enabled = false;
+                EnemiesToAttack = false;
+                StopCoroutine(AttackInterval());
             }
         }   
     }
@@ -70,6 +70,18 @@ public class Tower : MonoBehaviour
     }
     private void upgrade(GameObject gameObject)
     {
-        AtkPwr += 1f;
+        AtkPwr += 5f;
+    }
+    private void Attack()
+    {
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, target.position);
+        lineRenderer.enabled = true;
+    }
+    private IEnumerator AttackInterval()
+    {
+        targetscript.hp -= AtkPwr;
+        yield return new WaitForSeconds (0.2f);
+        IntervalLimiter = false;
     }
 }
