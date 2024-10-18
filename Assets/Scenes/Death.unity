@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 733044426}
   - component: {fileID: 733044425}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Quit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -306,7 +306,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 358511419cc67e241b7c7de3260d46b3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 85fa3480fa710bd40b6bb69eb4e18507, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -398,7 +398,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 779652746}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!1 &988468482
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,7 +638,7 @@ GameObject:
   - component: {fileID: 1112936714}
   - component: {fileID: 1112936713}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Retry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -740,7 +740,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 358511419cc67e241b7c7de3260d46b3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 85fa3480fa710bd40b6bb69eb4e18507, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
