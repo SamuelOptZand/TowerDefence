@@ -3,7 +3,7 @@ using UnityEngine;
 using TMPro;
 public class HpDisplayer : MonoBehaviour
 {
-    private float playerHealth = 10;
+    private float playerHealth = 100f;
     [SerializeField] private TMP_Text text;
     void Start()
     {

@@ -9,7 +9,7 @@ public class EnemyAI : MonoBehaviour
     private SpriteRenderer Sr;
     public static event Action<GameObject> ReachEnd;
     public static event Action<GameObject> KillEnem;
-    [SerializeField] private float MoveSpeed = 2f;
+    private float MoveSpeed = 2f;
     private float MaxHealth = 100f;
     private int i = 1;
     private float Health = 100f;

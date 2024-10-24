@@ -7,7 +7,7 @@ public class Tower : MonoBehaviour
     private EnemyAI targetscript;
     private List<GameObject> InRange = new List<GameObject>();
     private LineRenderer lineRenderer;
-    private float AtkPwr = 5f;
+    private float AtkPwr = 10f;
     private bool enablerange = false;
     private bool EnemiesToAttack = false;
     private bool IntervalLimiter = false;
@@ -24,8 +24,9 @@ public class Tower : MonoBehaviour
     {
         if (InRange.Count > 0)
         {
-            target = InRange[0].transform;
-            if(EnemiesToAttack == true)
+            target = InRange[InRange.Count - 1].transform;
+            targetscript = InRange[InRange.Count - 1].GetComponent<EnemyAI>();
+            if (EnemiesToAttack == true)
             {
                 Attack();
                 if(IntervalLimiter == false)
@@ -45,7 +46,7 @@ public class Tower : MonoBehaviour
                 if (!InRange.Contains(enemy.gameObject))
                 { 
                     InRange.Add(enemy.gameObject);
-                    targetscript = InRange[0].GetComponent<EnemyAI>();
+                    
                     EnemiesToAttack = true;
                 }
             }
